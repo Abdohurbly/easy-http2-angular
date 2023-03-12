@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "easy-http": {
+      "projectType": "library",
+      "root": "projects/easy-http",
+      "sourceRoot": "projects/easy-http/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/easy-http/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/easy-http/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/easy-http/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/easy-http/src/test.ts",
+            "tsConfig": "projects/easy-http/tsconfig.spec.json",
+            "karmaConfig": "projects/easy-http/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "easy-http"
 }

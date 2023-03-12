@@ -1,27 +1,42 @@
-# EasyHttp
+# Easy-Http2-Angular (Angular) 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+### Authers: Abdulwahab Herbli - Tasnim Kasab
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installation: 
 
-## Code scaffolding
+    npm i easy-http2-angular@latest
+## Basic Usage:
+#### Import EasyHttpService in your Service as following: 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    import { EasyHttpService } from  'easy-http2-angular';
 
-## Build
+#### Here is an example for basic usage: 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    async getProducts() {
 
-## Running unit tests
+	return = await this.httpHelper.get(baseUrl, headers,params);
+	}
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Advance Usage:
+#### Import EasyHttpService in your Service as following: 
 
-## Running end-to-end tests
+    import { EasyHttpService } from  'easy-http2-angular';
+#### All the http request functions are genaric type < T > example usage: 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    async  getProducts():  Promise<IProducts[] |  String> {
+		const  product:  HttpResponseType<IProducts[]> =
+		await  this.httpHelper.get<Promise<IProducts[]> | String>(baseUrl,headers, params);
+		if (product.status) {
+			return  product.data;
+		  }
+		return  product.msg
+	}
 
-## Further help
+#### In this case, `HttpResponseType` is: 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    export  interface  HttpResponseType<T> {
+		status?:  Boolean;
+		data?:  T;
+		msg?:  String
+	}
